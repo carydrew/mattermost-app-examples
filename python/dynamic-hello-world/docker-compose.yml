@@ -11,8 +11,9 @@ services:
       - "8090:8090"
     environment:
       MATTERMOST_SITEURL: "http://mattermost:8065"
-      APP_HOST: "mattermost-apps-dynamic-python-hello-world" # Same as the service's network name
+      APP_HOST: "mattermost-apps-python-hello-world" # Same as the service's network name
       APP_PORT: 8090
     volumes:
       - "./:/app"
-    command: "bash -c 'pip3 install -r requirements.txt && cd src && python3 dynamic-hello-world.py'"
+      - "../mattermost_models/:/app/src/mattermost_models"
+    command: "bash -c 'pip3 install -r requirements.txt -q && cd src && python3 dynamic-hello-world.py'"

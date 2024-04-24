@@ -1,26 +1,20 @@
 """Hello-world Example App in Python."""
+
 import copy
 import logging
 import os
-from pathlib import Path
 from typing import List
 
 from flask import Flask, request
-
-from python.mattermost_models.models import Models
+from mattermost_models.models import Models
 
 logging.basicConfig(level=logging.DEBUG)
 
-static_path = Path.cwd().joinpath() / "python/dynamic-hello-world/src/static"
-app = Flask(
-    __name__,
-    static_folder=static_path.as_posix(),
-    static_url_path="/static",
-)
+app = Flask(__name__, static_url_path="/static", static_folder="./static")
 
 default_port = 8090
 default_host = "mattermost-apps-python-hello-world"
-default_root_url = f"http://{default_host}:{default_port}"
+default_root_url = "http://mattermost-apps-python-hello-world:8090"
 
 DYNAMIC_FORM = Models.BaseForm(
     title="I am a Dynamic form!",
